@@ -9,6 +9,7 @@ items: List[Item] = []
 current_id = 1
 
 
+
 @app.get("/items", response_model=List[Item])
 def get_items():
     return items

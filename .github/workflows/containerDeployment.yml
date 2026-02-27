@@ -8,7 +8,7 @@ env:
   IMAGE_BASE_NAME: irvingvjuarez/fastapi-crud
 
 jobs:
-  build-and-test:
+  docker-image-ci-cd:
     runs-on: ubuntu-latest
 
     steps:
