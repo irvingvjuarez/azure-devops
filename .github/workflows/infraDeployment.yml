@@ -22,6 +22,7 @@ jobs:
 
     - name: List repo files
       run: ls -R
+      continue-on-error: true
 
     - name: Terraform format
       id: fmt
