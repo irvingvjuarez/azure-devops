@@ -20,6 +20,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1 
 
+    - name: List repo files
+      run: ls -R
+
     - name: Terraform format
       id: fmt
       run: terraform fmt -check
