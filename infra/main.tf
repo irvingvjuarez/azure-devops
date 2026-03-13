@@ -27,9 +27,7 @@ resource "azurerm_log_analytics_workspace" "log_analytics" {
   }
 }
 
-resource "azurerm_container_app_environment" "apps_environment" {
-  name                       = var.container_app_env_name
-  location                   = azurerm_resource_group.rg.location
-  resource_group_name        = azurerm_resource_group.rg.name
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.log_analytics.id
+data "azurerm_container_app_environment" "apps_environment" {
+  name                = var.container_app_env_name
+  resource_group_name = azurerm_resource_group.rg.name
 }

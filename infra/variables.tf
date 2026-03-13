@@ -19,5 +19,5 @@ variable "acr_name" {
 variable "container_app_env_name" {
   description = "Name of the Azure Container App Environment"
   type        = string
-  default     = "devops-env"
+  default     = "ivj-container-app-env"
 }
