@@ -7,7 +7,7 @@ variable "resource_group_name_prefix" {
 variable "resource_group_location" {
   description = "Location for the resource group"
   type        = string
-  default     = "East US 2"
+  default     = "East US"
 }
 
 variable "acr_name" {
