@@ -1,3 +1,6 @@
 venv/
 .pytest_cache
 .env
+
+.terraform/
+.terraform.lock.hcl
