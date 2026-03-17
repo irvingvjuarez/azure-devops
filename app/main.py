@@ -2,7 +2,34 @@ from fastapi import FastAPI, HTTPException
 from typing import List
 from .models import Item
 
+from opentelemetry import trace
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
+import os
+
 app = FastAPI()
+
+connection_string = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")
+
+trace.set_tracer_provider(TracerProvider())
+tracer_provider = trace.get_tracer_provider()
+
+exporter = AzureMonitorTraceExporter(
+    connection_string=connection_string
+)
+
+span_processor = BatchSpanProcessor(exporter)
+tracer_provider.add_span_processor(span_processor)
+
+FastAPIInstrumentor.instrument_app(app)
+
+
+@app.get("/")
+def root():
+    return {"message": "Hello telemetry"}
 
 # In-memory "database"
 items: List[Item] = []

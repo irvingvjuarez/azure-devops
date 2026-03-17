@@ -21,3 +21,6 @@ tomli==2.4.0
 typing_extensions==4.15.0
 typing-inspection==0.4.2
 uvicorn==0.39.0
+opentelemetry-distro
+opentelemetry-instrumentation-fastapi
+azure-monitor-opentelemetry-exporter
