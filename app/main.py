@@ -2,7 +2,17 @@ from fastapi import FastAPI, HTTPException
 from typing import List
 from .models import Item
 
+from azure.monitor.opentelemetry import configure_azure_monitor
+import os
+
+if os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING"):
+    configure_azure_monitor()
+
 app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "Hello telemetry"}
 
 # In-memory "database"
 items: List[Item] = []
